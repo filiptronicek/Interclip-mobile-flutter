@@ -30,13 +30,15 @@ class MyApp extends StatelessWidget {
                   } else if(value.length > 5) {
                     return 'Code too long';
                   }
+                  return null;
                 },
                 textAlign: TextAlign.center,
                 textAlignVertical: TextAlignVertical.center,
                 maxLines: 1,
                 decoration: InputDecoration(
                     border: InputBorder.none, labelText: 'Enter your code'),
-              )
+              ),
+              
             ],
           )),
     );
