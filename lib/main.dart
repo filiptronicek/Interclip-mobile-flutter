@@ -20,6 +20,7 @@ class MyApp extends StatelessWidget {
           appBar: AppBar(title: Text('Interclip mobile')),
           body: Column(
             mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               //   Text("First line"),
               //   Text("second line lmao"),
