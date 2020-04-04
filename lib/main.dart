@@ -16,16 +16,30 @@ class MyApp extends StatelessWidget {
       ),
       darkTheme: ThemeData(brightness: Brightness.dark),
       home: Scaffold(
-        backgroundColor: orange,
+          backgroundColor: orange,
           appBar: AppBar(title: Text('Interclip mobile')),
-          body: Center(
-            child: (
-              Text("lol")
-            )
-          ),
-          ),
+          body: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+           //   Text("First line"),
+           //   Text("second line lmao"),
+              TextFormField(
+                validator: (value) {
+                  if (value.isEmpty) {
+                    return 'Please enter username.';
+                  } else if(value.length > 5) {
+                    return 'Code too long';
+                  }
+                },
+                textAlign: TextAlign.center,
+                textAlignVertical: TextAlignVertical.center,
+                maxLines: 1,
+                decoration: InputDecoration(
+                    border: InputBorder.none, labelText: 'Enter your code'),
+              )
+            ],
+          )),
     );
-    
   }
 }
 
