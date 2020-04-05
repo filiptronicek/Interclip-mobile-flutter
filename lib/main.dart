@@ -9,6 +9,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     Color orange = _colorFromHex("#ff9800"); /* Main background color */
     Color darkGrey = _colorFromHex("#333333"); /* Main menu color */
+    String textCode = "";
     print("yees");
     return MaterialApp(
       title: 'Interclip',
@@ -31,6 +32,9 @@ class MyApp extends StatelessWidget {
               //   Text("First line"),
               //   Text("second line lmao"),
               TextFormField(
+                  onChanged: (text) {
+                    textCode = text;
+                  },
                   autocorrect: false,
                   autofocus: true,
                   maxLength: 5,
