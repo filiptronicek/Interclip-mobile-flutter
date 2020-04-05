@@ -11,10 +11,14 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Interclip',
       theme: ThemeData(
-        primaryColor: darkGrey,
-        brightness: Brightness.light,
-      ),
-      darkTheme: ThemeData(primaryColor: darkGrey, ),
+          primaryColor: darkGrey,
+          secondaryHeaderColor: orange,
+          brightness: Brightness.light,
+          backgroundColor: orange),
+      darkTheme: ThemeData(
+          primaryColor: darkGrey,
+          backgroundColor: darkGrey,
+          brightness: Brightness.dark),
       home: Scaffold(
           backgroundColor: orange,
           appBar: AppBar(title: Text('Interclip mobile')),
@@ -25,6 +29,8 @@ class MyApp extends StatelessWidget {
               //   Text("First line"),
               //   Text("second line lmao"),
               TextFormField(
+                  autocorrect: false,
+                  autofocus: true,
                   maxLength: 5,
                   maxLengthEnforced: true,
                   validator: (value) {
@@ -33,7 +39,7 @@ class MyApp extends StatelessWidget {
                     } else if (value.length > 5) {
                       return 'Code too long';
                     } else {
-                       return validateMyInput(value);
+                      return validateMyInput(value);
                     }
                   },
                   textAlign: TextAlign.center,
@@ -50,16 +56,16 @@ class MyApp extends StatelessWidget {
   }
 }
 
-
 Color _colorFromHex(String hexColor) {
   final hexCode = hexColor.replaceAll('#', '');
   return Color(int.parse('FF$hexCode', radix: 16));
 }
+
 String validateMyInput(String value) {
-    Pattern pattern = r'^\d+(?:\.\d+)?$';
-    RegExp regex = new RegExp(pattern);
-    if (!regex.hasMatch(value))
-      return 'Enter Valid Number';
-    else
-      return null;
-  }
+  Pattern pattern = r'^\d+(?:\.\d+)?$';
+  RegExp regex = new RegExp(pattern);
+  if (!regex.hasMatch(value))
+    return 'Enter Valid Number';
+  else
+    return null;
+}
