@@ -10,6 +10,8 @@ class MyApp extends StatelessWidget {
     Color orange = _colorFromHex("#ff9800"); /* Main background color */
     Color darkGrey = _colorFromHex("#333333"); /* Main menu color */
     String textCode = "";
+    String patttern = r'(([a-z]|[1-9]){5})';
+    RegExp regExp = new RegExp(patttern);
     print("yees");
     return MaterialApp(
       title: 'Interclip',
@@ -34,6 +36,9 @@ class MyApp extends StatelessWidget {
               TextFormField(
                   onChanged: (text) {
                     textCode = text;
+                    if(textCode.length == 5 && regExp.hasMatch(textCode)) {
+                      print(textCode);
+                    }
                   },
                   autocorrect: false,
                   autofocus: true,
@@ -48,14 +53,20 @@ class MyApp extends StatelessWidget {
                       return validateMyInput(value);
                     }
                   },
+                  textCapitalization: TextCapitalization.characters,
                   textAlign: TextAlign.center,
                   textAlignVertical: TextAlignVertical.center,
                   maxLines: 1,
+                  textInputAction: TextInputAction.go,
                   decoration: InputDecoration(
-                      border: InputBorder.none, labelText: 'Your code'),
+                    border: InputBorder.none,
+                    labelText: 'Your code',
+                    helperText: 'A five digit code from Interclip'
+                  ),
                   style: TextStyle(
                     fontSize: 120,
                   )),
+                
             ],
           )),
     );
