@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:connectivity/connectivity.dart';
 import 'dart:ui';
 
 void main() => runApp(MyApp());
@@ -8,6 +9,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     Color orange = _colorFromHex("#ff9800"); /* Main background color */
     Color darkGrey = _colorFromHex("#333333"); /* Main menu color */
+    print("yees");
     return MaterialApp(
       title: 'Interclip',
       theme: ThemeData(
@@ -46,7 +48,7 @@ class MyApp extends StatelessWidget {
                   textAlignVertical: TextAlignVertical.center,
                   maxLines: 1,
                   decoration: InputDecoration(
-                      border: InputBorder.none, labelText: 'Enter your code'),
+                      border: InputBorder.none, labelText: 'Your code'),
                   style: TextStyle(
                     fontSize: 120,
                   )),
@@ -59,6 +61,17 @@ class MyApp extends StatelessWidget {
 Color _colorFromHex(String hexColor) {
   final hexCode = hexColor.replaceAll('#', '');
   return Color(int.parse('FF$hexCode', radix: 16));
+}
+
+Future<bool> isConnected() async {
+  var connectivityResult = await (Connectivity().checkConnectivity());
+  if (connectivityResult == ConnectivityResult.mobile) {
+    return true;
+  } else if (connectivityResult == ConnectivityResult.wifi) {
+    return true;
+  } else {
+    return false;
+  }
 }
 
 String validateMyInput(String value) {
